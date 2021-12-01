@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
     public static int DialogNumber { get; set; }
+    public static int HP { get; set; } = 100;
+    public static bool EatPorkchop { get; set; } = false;
 
     public static void LoadData()
     {
@@ -12,13 +14,17 @@ public class PlayerData : MonoBehaviour
         string[] data = stream.ReadToEnd().Split();
 
         DialogNumber = Convert.ToInt32(data[0]);
+        HP = Convert.ToInt32(data[1]);
+        EatPorkchop = Convert.ToBoolean(data[2]);
     }
 
     public static void SaveData()
     {
         StreamWriter stream = new StreamWriter(Application.persistentDataPath + "/save.4rp");
 
-        stream.Write(DialogNumber);
+        stream.WriteLine(DialogNumber);
+        stream.WriteLine(HP);
+        stream.WriteLine(EatPorkchop);
     }
 }
 
