@@ -20,7 +20,7 @@ public class DialogController : MonoBehaviour
 
     private void Start()
     {
-        StreamReader stream = new StreamReader(Application.persistentDataPath + "/replicas.4rp");
+        StreamReader stream = new StreamReader(Application.dataPath + "/PlayerData/replicas.4rp");
         string replicasString = stream.ReadToEnd();
 
         string[] replicasLines = replicasString.Split('\n');
@@ -166,7 +166,7 @@ public class DialogController : MonoBehaviour
 
     public static string PersonIdToName(int id)
     {
-        StreamReader stream = new StreamReader(Application.persistentDataPath + "/persons.4rp");
+        StreamReader stream = new StreamReader(Application.dataPath + "/PlayerData/persons.4rp");
         string personsString = stream.ReadToEnd();
 
         string[] personsLines = personsString.Split('\n');
