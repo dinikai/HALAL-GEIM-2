@@ -6,7 +6,7 @@ public class BArabText : MonoBehaviour
     private AudioSource doomSource;
     [SerializeField] private Animator fadeAnimator;
     [SerializeField] private GameObject buttonBlock, buttonAttack, bArab;
-    [SerializeField] private string[] thinks[2];
+    [SerializeField] private string[] thinks;
     private Text textObject;
     public string text, currentText = "";
     private int currentLetter = -1;
