@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class BArabText : MonoBehaviour
 {
+    private AudioSource doomSource;
+    [SerializeField] private Animator fadeAnimator;
     private Text textObject;
     public string text, currentText = "";
     private int currentLetter = -1;
@@ -10,8 +12,17 @@ public class BArabText : MonoBehaviour
     void Start()
     {
         textObject = GetComponent<Text>();
+        doomSource = GetComponent<AudioSource>();
 
         NextLetter();
+    }
+
+    private void Update()
+    {
+        if (fadeAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+        {
+
+        }
     }
 
     public void NextLetter()
@@ -32,6 +43,6 @@ public class BArabText : MonoBehaviour
 
     private void StartBegin()
     {
-        
+        fadeAnimator.Play("FadePanel1", 0, 0);
     }
 }
