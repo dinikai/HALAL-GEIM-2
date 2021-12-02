@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BArabFight : MonoBehaviour
 {
+    
+
     void Start()
     {
         
@@ -12,5 +14,9 @@ public class BArabFight : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Attack()
+    {
     }
 }
