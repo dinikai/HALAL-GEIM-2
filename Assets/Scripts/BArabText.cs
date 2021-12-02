@@ -5,6 +5,8 @@ public class BArabText : MonoBehaviour
 {
     private AudioSource doomSource;
     [SerializeField] private Animator fadeAnimator;
+    [SerializeField] private GameObject buttonBlock, buttonAttack, bArab;
+    [SerializeField] private string[] thinks[2];
     private Text textObject;
     public string text, currentText = "";
     private int currentLetter = -1;
@@ -19,10 +21,6 @@ public class BArabText : MonoBehaviour
 
     private void Update()
     {
-        if (fadeAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
-        {
-
-        }
     }
 
     public void NextLetter()
@@ -44,5 +42,11 @@ public class BArabText : MonoBehaviour
     private void StartBegin()
     {
         fadeAnimator.Play("FadePanel1", 0, 0);
+        doomSource.Play();
+        buttonBlock.SetActive(true);
+        buttonAttack.SetActive(true);
+        bArab.SetActive(true);
+
+        textObject.text = "Your death appeared. You feel its your end.";
     }
 }
