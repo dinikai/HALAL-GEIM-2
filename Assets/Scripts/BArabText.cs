@@ -7,6 +7,7 @@ public class BArabText : MonoBehaviour
     [SerializeField] private Animator fadeAnimator;
     [SerializeField] private GameObject buttonBlock, buttonAttack, bArab;
     [SerializeField] private string[] thinks;
+    [SerializeField] private BArabFight fight;
     private Text textObject;
     public string text, currentText = "";
     private int currentLetter = -1;
@@ -46,7 +47,13 @@ public class BArabText : MonoBehaviour
         buttonBlock.SetActive(true);
         buttonAttack.SetActive(true);
         bArab.SetActive(true);
+        BArabFight.Dogovoril = true;
 
         textObject.text = "Your death appeared. You feel its your end.";
+    }
+
+    private void E()
+    {
+        fight.PorkBombRain();
     }
 }
