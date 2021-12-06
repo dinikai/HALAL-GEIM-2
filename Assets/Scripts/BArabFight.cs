@@ -9,6 +9,7 @@ public class BArabFight : MonoBehaviour
     [SerializeField] private GameObject porkBomb;
     [SerializeField] private Slider effenSlider, bArabSlider;
     [SerializeField] private Rigidbody2D rb;
+    public static int arabHP = 600;
     public float speed;
     private int bulletsCount = 0;
     private bool isRight, isLeft, isUp, isDown;
@@ -17,7 +18,6 @@ public class BArabFight : MonoBehaviour
     void Start()
     {
         StartCoroutine(AttackLoop());
-
     }
 
     public void PorkBombRain()
@@ -28,6 +28,7 @@ public class BArabFight : MonoBehaviour
     void FixedUpdate()
     {
         effenSlider.value = PlayerData.HP;
+        bArabSlider.value = arabHP;
 
         if(isRight)
         {

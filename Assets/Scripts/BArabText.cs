@@ -47,6 +47,7 @@ public class BArabText : MonoBehaviour
         buttonBlock.SetActive(true);
         buttonAttack.SetActive(true);
         bArab.SetActive(true);
+        bArab.GetComponent<Animator>().Play("BArabIdle");
         BArabFight.Dogovoril = true;
 
         textObject.text = "Your death appeared. You feel its your end.";
