@@ -1,23 +1,31 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BArabFight : MonoBehaviour
 {
-    [SerializeField] private AudioSource boomSound, shotSound;
-    [SerializeField] private GameObject porkBomb;
+    [SerializeField] private AudioSource boomSound, minigunSound;
+    [SerializeField] private GameObject porkBomb, effenBullet, effen, minigunBullet, bArab;
     [SerializeField] private Slider effenSlider, bArabSlider;
     [SerializeField] private Rigidbody2D rb;
-    public static int arabHP = 600;
+    [SerializeField] private Animator backgroundAnim;
+    [SerializeField] private ParticleSystem particles;
+    public static int ArabHP = 600;
+    public float minigunDelay = 10, bombDelay = 7;
     public float speed;
-    private int bulletsCount = 0;
+    private int bulletsCount = 0, minigunBulletsCount = 0;
     private bool isRight, isLeft, isUp, isDown;
     public static bool Dogovoril = false;
 
     void Start()
     {
+        effen = GameObject.FindGameObjectWithTag("Player");
+
         StartCoroutine(AttackLoop());
+        StartCoroutine(MinigunAttackLoop());
+
+        particles.Stop();
     }
 
     public void PorkBombRain()
@@ -28,7 +36,7 @@ public class BArabFight : MonoBehaviour
     void FixedUpdate()
     {
         effenSlider.value = PlayerData.HP;
-        bArabSlider.value = arabHP;
+        bArabSlider.value = ArabHP;
 
         if(isRight)
         {
@@ -46,11 +54,22 @@ public class BArabFight : MonoBehaviour
         {
             rb.MovePosition(rb.position + new Vector2(0, -speed));
         }
+
+        if(PlayerData.HP <= 0)
+        {
+            PlayerData.HP = 100;
+            ArabHP = 600;
+            Dogovoril = false;
+
+            SceneManager.LoadScene(ScenesName.RealLose);
+        }
+
+        
     }
 
     public void Attack()
     {
-
+        Instantiate(effenBullet, effen.transform.position, Quaternion.Euler(0, 0, 0));
     }
 
     public void Block()
@@ -90,7 +109,7 @@ public class BArabFight : MonoBehaviour
     {
         while(bulletsCount < 20)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
 
             bulletsCount++;
 
@@ -103,13 +122,65 @@ public class BArabFight : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(bombDelay);
 
             if(Dogovoril)
             {
                 bulletsCount = 0;
+                if(bombDelay > 4)
+                    bombDelay -= 0.5f;
+
                 StartCoroutine(SpawnRain());
             }
         }
+    }
+
+    IEnumerator MinigunAttack()
+    {
+        minigunSound.Play();
+        bArab.GetComponent<Animator>().SetBool("IsMinigun", true);
+
+        minigunBulletsCount = 0;
+
+        while (minigunBulletsCount < 10)
+        {
+            Instantiate(minigunBullet, new Vector3(minigunBullet.transform.position.x, effen.transform.position.y + 0.5f, 0f), Quaternion.Euler(0f, 0f, 0f));
+            minigunBulletsCount++;
+
+            yield return new WaitForSeconds(0.3f);
+        }
+
+        minigunSound.Stop();
+        bArab.GetComponent<Animator>().SetBool("IsMinigun", false);
+    }
+
+    IEnumerator MinigunAttackLoop()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(minigunDelay);
+
+            if(Dogovoril)
+            {
+                if(minigunDelay > 4)
+                    minigunDelay -= 0.5f;
+
+                StartCoroutine(MinigunAttack());
+            }
+        }
+    }
+
+    public IEnumerator BArabMusicSync()
+    {
+        yield return new WaitForSeconds(30.35f);
+
+        Animator bArabAnim = bArab.GetComponent<Animator>();
+
+        bArabAnim.StopPlayback();
+        bArabAnim.Play("BArabIdle2", 0, 0);
+
+        backgroundAnim.Play("IntegrateAMove", 0, 0);
+
+        particles.Play();
     }
 }

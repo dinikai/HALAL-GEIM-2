@@ -3,19 +3,25 @@ using UnityEngine.UI;
 
 public class BArabText : MonoBehaviour
 {
-    private AudioSource doomSource;
+    [SerializeField] private AudioSource doomSource;
     [SerializeField] private Animator fadeAnimator;
-    [SerializeField] private GameObject buttonBlock, buttonAttack, bArab;
+    [SerializeField] private GameObject[] enablableItems;
+    [SerializeField] private GameObject bArab;
     [SerializeField] private string[] thinks;
     [SerializeField] private BArabFight fight;
+    public float textSpeed, dotDelay;
+    private AudioSource voice;
     private Text textObject;
     public string text, currentText = "";
     private int currentLetter = -1;
+    private bool hasVoice = true;
 
     void Start()
     {
         textObject = GetComponent<Text>();
-        doomSource = GetComponent<AudioSource>();
+        voice = GetComponent<AudioSource>();
+
+        text = thinks[0];
 
         NextLetter();
     }
@@ -32,25 +38,48 @@ public class BArabText : MonoBehaviour
             currentText += text[currentLetter];
             textObject.text = currentText;
 
-            Invoke(nameof(NextLetter), text[currentLetter] != '.' ? 0.1f : 0.45f);
+            if(hasVoice)
+                voice.Play();
+
+            Invoke(nameof(NextLetter), text[currentLetter] != '.' ? textSpeed : dotDelay);
         }
         else
         {
-            Invoke(nameof(StartBegin), 2);
+            if(text == thinks[0])
+            {
+                Invoke(nameof(StartBegin), 2);
+                fight.StartCoroutine(fight.BArabMusicSync());
+
+                textSpeed = 0.04f;
+                hasVoice = false;
+            }
         }
+    }
+
+    public void PrintToText(string newText)
+    {
+        text = newText;
+        currentText = "";
+        currentLetter = -1;
+
+        NextLetter();
     }
 
     private void StartBegin()
     {
         fadeAnimator.Play("FadePanel1", 0, 0);
         doomSource.Play();
-        buttonBlock.SetActive(true);
-        buttonAttack.SetActive(true);
+
+        foreach (GameObject item in enablableItems)
+        {
+            item.SetActive(true);
+        }
+
         bArab.SetActive(true);
         bArab.GetComponent<Animator>().Play("BArabIdle");
         BArabFight.Dogovoril = true;
 
-        textObject.text = "Your death appeared. You feel its your end.";
+        PrintToText("Your death appeared. You feel its end of your journey.");
     }
 
     private void E()

@@ -13,8 +13,8 @@ public class PorkBomb : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().Play("EffewbergHurt", 0, 0);
-            PlayerData.HP -= 3;
+            other.GetComponent<Animator>().Play("EffewbergHurt", 0, 0);
+            PlayerData.HP -= 1;
         }
     }
 }
