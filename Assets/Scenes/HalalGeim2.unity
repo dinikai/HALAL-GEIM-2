@@ -98,8 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 780f916b99504c749a7c91366407a304,
-    type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 780f916b99504c749a7c91366407a304, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -205,8 +204,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -9114568203425737940, guid: e979cc6102380fe47b9cd00b05bfe49f,
-    type: 3}
+  m_Sprite: {fileID: -9114568203425737940, guid: e979cc6102380fe47b9cd00b05bfe49f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -227,8 +225,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.43, y: -1.05, z: 0}
   m_LocalScale: {x: 0.3139, y: 0.3139, z: 0.3139}
-  m_Children:
-  - {fileID: 1386180333}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1058,7 +1055,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 118381953}
   m_FillRect: {fileID: 1104927698}
   m_HandleRect: {fileID: 118381952}
@@ -1264,6 +1261,7 @@ GameObject:
   - component: {fileID: 1386180332}
   - component: {fileID: 1386180331}
   - component: {fileID: 1386180334}
+  - component: {fileID: 1386180335}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -1330,11 +1328,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1386180330}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.555591, y: 3.3450143, z: -31.85728}
-  m_LocalScale: {x: 3.185728, y: 3.185728, z: 3.185728}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 49363554}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1386180334
 AudioSource:
@@ -1432,6 +1430,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1818360608 &1386180335
+PositionConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386180330}
+  m_Enabled: 1
+  m_Weight: 1
+  m_TranslationAtRest: {x: 0, y: 0, z: -10}
+  m_TranslationOffset: {x: 1.43, y: 1.05, z: -10}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 49363554}
+    weight: 1
 --- !u!1 &1542858348
 GameObject:
   m_ObjectHideFlags: 0
