@@ -11,12 +11,15 @@ public class BArabFight : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator backgroundAnim;
     [SerializeField] private ParticleSystem particles;
-    public static int ArabHP = 600;
+    [SerializeField] private BArabText arabText;
+    [SerializeField] private Sprite arabKilled;
+    public static int ArabHP = 50;
     public float minigunDelay = 10, bombDelay = 7;
     public float speed;
     private int bulletsCount = 0, minigunBulletsCount = 0;
     private bool isRight, isLeft, isUp, isDown;
     public static bool Dogovoril = false;
+    public bool Killed = false;
 
     void Start()
     {
@@ -64,7 +67,25 @@ public class BArabFight : MonoBehaviour
             SceneManager.LoadScene(ScenesName.RealLose);
         }
 
-        
+        if(ArabHP <= 0 && !Killed)
+        {
+            Killed = true;
+            Dogovoril = false;
+            arabText.hasVoice = true;
+
+            arabText.PrintToText("*wwwhhhaaat. you killed me. its very fcking.. i think you very weak. but you... ...you SO STUPID. AHAHAHAHAHAHAHAHAHAHHAHAHAHAHA");
+            arabText.SetEnable(false);
+            bArab.SetActive(true);
+            bArab.GetComponent<SpriteRenderer>().sprite = arabKilled;
+            arabText.doomSource.Stop();
+            particles.Stop();
+            minigunSound.Stop();
+            bArab.GetComponent<Animator>().SetBool("IsMinigun", false);
+
+            bArab.transform.position = new Vector2(5.52f, 0f);
+
+            StopAllCoroutines();
+        }
     }
 
     public void Attack()
