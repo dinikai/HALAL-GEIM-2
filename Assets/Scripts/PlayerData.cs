@@ -35,4 +35,6 @@ public struct ScenesName
     public static string Begin { get; } = "Begin";
     public static string Title { get; } = "Title1";
     public static string Game1 { get; } = "HalalGeim2";
+    public static string RealFriend { get; } = "RealFriendFight";
+    public static string RealLose { get; } = "BArabLose";
 }
