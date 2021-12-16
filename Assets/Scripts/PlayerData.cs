@@ -10,12 +10,9 @@ public class PlayerData : MonoBehaviour
 
     public static void LoadData()
     {
-        StreamReader stream = new StreamReader(Application.persistentDataPath + "/save.4rp");
-        string[] data = stream.ReadToEnd().Split();
-
-        DialogNumber = Convert.ToInt32(data[0]);
-        HP = Convert.ToInt32(data[1]);
-        EatPorkchop = Convert.ToBoolean(data[2]);
+        DialogNumber = Convert.ToInt32(PlayerPrefs.GetInt("dnum"));
+        HP = PlayerPrefs.GetInt("hp");
+        EatPorkchop = Convert.ToBoolean(PlayerPrefs.GetInt("epork"));
     }
 
     public static void SaveData()
@@ -37,4 +34,5 @@ public struct ScenesName
     public static string Game1 { get; } = "HalalGeim2";
     public static string RealFriend { get; } = "RealFriendFight";
     public static string RealLose { get; } = "BArabLose";
+    public static string BadEnd { get; } = "BadEnd";
 }

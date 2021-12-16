@@ -1,10 +1,12 @@
-using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BArabText : MonoBehaviour
 {
     public AudioSource doomSource;
+    [SerializeField] private AudioSource deathSource;
     [SerializeField] private Animator fadeAnimator;
     [SerializeField] private GameObject[] enablableItems;
     [SerializeField] private GameObject bArab;
@@ -29,10 +31,6 @@ public class BArabText : MonoBehaviour
         NextLetter();
     }
 
-    private void Update()
-    {
-    }
-
     public void NextLetter()
     {
         if (currentLetter < text.Length - 1)
@@ -55,6 +53,11 @@ public class BArabText : MonoBehaviour
 
                 textSpeed = 0.04f;
                 hasVoice = false;
+            }
+
+            if(fight.Killed)
+            {
+                StartCoroutine(ArabDeath());
             }
         }
     }
@@ -104,5 +107,22 @@ public class BArabText : MonoBehaviour
         {
             item.SetActive(state);
         }
+    }
+
+    IEnumerator ArabDeath()
+    {
+        yield return new WaitForSeconds(2);
+
+        deathSource.Play();
+        bArab.SetActive(false);
+
+        StartCoroutine(BadEnding());
+    }
+
+    IEnumerator BadEnding()
+    {
+        yield return new WaitForSeconds(2);
+
+        SceneManager.LoadScene(ScenesName.BadEnd);
     }
 }

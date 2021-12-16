@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BArabFight : MonoBehaviour
 {
-    [SerializeField] private AudioSource boomSound, minigunSound;
+    [SerializeField] private AudioSource boomSound, minigunSound, diorSound;
     [SerializeField] private GameObject porkBomb, effenBullet, effen, minigunBullet, bArab;
     [SerializeField] private Slider effenSlider, bArabSlider;
     [SerializeField] private Rigidbody2D rb;
@@ -71,18 +71,18 @@ public class BArabFight : MonoBehaviour
         {
             Killed = true;
             Dogovoril = false;
-            arabText.hasVoice = true;
 
             arabText.PrintToText("*wwwhhhaaat. you killed me. its very fcking.. i think you very weak. but you... ...you SO STUPID. AHAHAHAHAHAHAHAHAHAHHAHAHAHAHA");
             arabText.SetEnable(false);
             bArab.SetActive(true);
-            bArab.GetComponent<SpriteRenderer>().sprite = arabKilled;
             arabText.doomSource.Stop();
             particles.Stop();
             minigunSound.Stop();
             bArab.GetComponent<Animator>().SetBool("IsMinigun", false);
+            Destroy(bArab.GetComponent<Animator>());
+            bArab.GetComponent<SpriteRenderer>().sprite = arabKilled;
 
-            bArab.transform.position = new Vector2(5.52f, 0f);
+            bArab.GetComponent<Rigidbody2D>().MovePosition(new Vector2(8.5f, 0f));
 
             StopAllCoroutines();
         }
