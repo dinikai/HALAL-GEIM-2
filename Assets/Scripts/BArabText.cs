@@ -55,7 +55,7 @@ public class BArabText : MonoBehaviour
                 hasVoice = false;
             }
 
-            if(fight.Killed)
+            if(PlayerData.ArabKilled)
             {
                 StartCoroutine(ArabDeath());
             }

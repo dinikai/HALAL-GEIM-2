@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour
@@ -7,21 +7,29 @@ public class PlayerData : MonoBehaviour
     public static int DialogNumber { get; set; }
     public static int HP { get; set; } = 100;
     public static bool EatPorkchop { get; set; } = false;
+    public static bool ArabKilled { get; set; } = false;
+
+    private void Awake()
+    {
+        LoadData();
+    }
 
     public static void LoadData()
     {
-        DialogNumber = Convert.ToInt32(PlayerPrefs.GetInt("dnum"));
+        DialogNumber = PlayerPrefs.GetInt("dnum");
         HP = PlayerPrefs.GetInt("hp");
         EatPorkchop = Convert.ToBoolean(PlayerPrefs.GetInt("epork"));
+        ArabKilled = Convert.ToBoolean(PlayerPrefs.GetInt("arabkill"));
     }
 
     public static void SaveData()
     {
-        StreamWriter stream = new StreamWriter(Application.persistentDataPath + "/save.4rp");
+        PlayerPrefs.SetInt("dnum", DialogNumber);
+        PlayerPrefs.SetInt("hp", HP);
+        PlayerPrefs.SetInt("epork", Convert.ToInt32(EatPorkchop));
+        PlayerPrefs.SetInt("arabkill", Convert.ToInt32(ArabKilled));
 
-        stream.WriteLine(DialogNumber);
-        stream.WriteLine(HP);
-        stream.WriteLine(EatPorkchop);
+        PlayerPrefs.Save();
     }
 }
 

@@ -9,7 +9,7 @@ public class MinigunBullet : MonoBehaviour
     private void FixedUpdate()
     {
         transform.Translate(Vector2.left * speed);
-        speed *= 1.05f;
+        speed *= 1.02f;
 
         if(transform.position.x < -10)
         {

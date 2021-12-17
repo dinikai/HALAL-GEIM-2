@@ -157,6 +157,9 @@ public class DialogController : MonoBehaviour
     {
         PlayerData.DialogNumber++;
 
+        if(PlayerData.DialogNumber % 10 == 0)
+            PlayerData.SaveData();
+
         lettersAdded = 0;
         currentString = "";
         lettersEnabled = true;

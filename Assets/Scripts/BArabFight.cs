@@ -19,7 +19,6 @@ public class BArabFight : MonoBehaviour
     private int bulletsCount = 0, minigunBulletsCount = 0;
     private bool isRight, isLeft, isUp, isDown;
     public static bool Dogovoril = false;
-    public bool Killed = false;
 
     void Start()
     {
@@ -67,9 +66,9 @@ public class BArabFight : MonoBehaviour
             SceneManager.LoadScene(ScenesName.RealLose);
         }
 
-        if(ArabHP <= 0 && !Killed)
+        if(ArabHP <= 0 && !PlayerData.ArabKilled)
         {
-            Killed = true;
+            PlayerData.ArabKilled = true;
             Dogovoril = false;
 
             arabText.PrintToText("*wwwhhhaaat. you killed me. its very fcking.. i think you very weak. but you... ...you SO STUPID. AHAHAHAHAHAHAHAHAHAHHAHAHAHAHA");
