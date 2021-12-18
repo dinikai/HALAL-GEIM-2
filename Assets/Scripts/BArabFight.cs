@@ -80,8 +80,9 @@ public class BArabFight : MonoBehaviour
             bArab.GetComponent<Animator>().SetBool("IsMinigun", false);
             Destroy(bArab.GetComponent<Animator>());
             bArab.GetComponent<SpriteRenderer>().sprite = arabKilled;
-
             bArab.GetComponent<Rigidbody2D>().MovePosition(new Vector2(8.5f, 0f));
+
+            PlayerData.SaveData();
 
             StopAllCoroutines();
         }
@@ -117,11 +118,23 @@ public class BArabFight : MonoBehaviour
         isDown = true;
     }
 
-    public void NoMove()
+    public void NoRight()
     {
         isRight = false;
+    }
+
+    public void NoLeft()
+    {
         isLeft = false;
+    }
+
+    public void NoUp()
+    {
         isUp = false;
+    }
+
+    public void NoDown()
+    {
         isDown = false;
     }
 

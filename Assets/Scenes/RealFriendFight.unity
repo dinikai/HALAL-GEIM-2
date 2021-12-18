@@ -993,7 +993,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: ccff6523df925ad488870975b997b3ef, type: 3}
     m_FontSize: 40
-    m_FontStyle: 0
+    m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 140
@@ -1003,9 +1003,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'attack - 40 hp - 600
-
-'
+  m_Text: debug
 --- !u!222 &644292861
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1130,7 +1128,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -1.3110728, y: 0.17238712}
@@ -1353,7 +1351,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1149357852}
           m_TargetAssemblyTypeName: BArabFight, Assembly-CSharp
-          m_MethodName: NoMove
+          m_MethodName: NoDown
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6947,7 +6945,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1149357852}
           m_TargetAssemblyTypeName: BArabFight, Assembly-CSharp
-          m_MethodName: NoMove
+          m_MethodName: NoRight
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7235,7 +7233,6 @@ MonoBehaviour:
   minigunDelay: 10
   bombDelay: 7
   speed: 0.08
-  Killed: 0
 --- !u!1 &1190748039
 GameObject:
   m_ObjectHideFlags: 0
@@ -7570,7 +7567,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1149357852}
           m_TargetAssemblyTypeName: BArabFight, Assembly-CSharp
-          m_MethodName: NoMove
+          m_MethodName: NoLeft
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -8787,7 +8784,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1149357852}
           m_TargetAssemblyTypeName: BArabFight, Assembly-CSharp
-          m_MethodName: NoMove
+          m_MethodName: NoUp
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

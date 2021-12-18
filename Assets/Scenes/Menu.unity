@@ -362,8 +362,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1649215044}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Play
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -828,8 +828,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1649215044}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Play
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: ArabFight
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1122,6 +1122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a2e9997b80c754f8a8b631bb563e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arabKilledSprite: {fileID: 21300000, guid: d24fd9e38e1bb484f988bb6745dc26b9, type: 3}
+  mainCamera: {fileID: 1512435842}
+  arab: {fileID: 124506909}
+  logoText: {fileID: 729114611}
 --- !u!4 &1649215045
 Transform:
   m_ObjectHideFlags: 0

@@ -9,24 +9,23 @@ public class PlayerData : MonoBehaviour
     public static bool EatPorkchop { get; set; } = false;
     public static bool ArabKilled { get; set; } = false;
 
-    private void Awake()
-    {
-        LoadData();
-    }
-
     public static void LoadData()
     {
-        DialogNumber = PlayerPrefs.GetInt("dnum");
-        HP = PlayerPrefs.GetInt("hp");
-        EatPorkchop = Convert.ToBoolean(PlayerPrefs.GetInt("epork"));
-        ArabKilled = Convert.ToBoolean(PlayerPrefs.GetInt("arabkill"));
+        if(PlayerPrefs.HasKey("dnum"))
+            DialogNumber = PlayerPrefs.GetInt("dnum");
+        if(PlayerPrefs.HasKey("hp"))
+            HP = PlayerPrefs.GetInt("hp");
+        if(PlayerPrefs.HasKey("eatpork"))
+            EatPorkchop = Convert.ToBoolean(PlayerPrefs.GetInt("eatpork"));
+        if(PlayerPrefs.HasKey("arabkill"))
+            ArabKilled = Convert.ToBoolean(PlayerPrefs.GetInt("arabkill"));
     }
 
     public static void SaveData()
     {
         PlayerPrefs.SetInt("dnum", DialogNumber);
         PlayerPrefs.SetInt("hp", HP);
-        PlayerPrefs.SetInt("epork", Convert.ToInt32(EatPorkchop));
+        PlayerPrefs.SetInt("eatpork", Convert.ToInt32(EatPorkchop));
         PlayerPrefs.SetInt("arabkill", Convert.ToInt32(ArabKilled));
 
         PlayerPrefs.Save();
