@@ -1,8 +1,5 @@
-# SEVA!!!!!!!! DO. NOT. MERGE. WITH. MASTER.
-ladno mne poher ya mergy. potom udaly. --dinikai
-
 # HALAL-GEIM-2
-Stupid game by dinikai and Shashlik
+Stupid android game by dinikai and Shashlik
 
 # How to play
 Please dont play!!
