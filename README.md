@@ -1,3 +1,4 @@
+# SEVA!!!!!!!! DO. NOT. MERGE. WITH. MASTER.
 # HALAL-GEIM-2
 Stupid game by dinikai and Shashlik
 
