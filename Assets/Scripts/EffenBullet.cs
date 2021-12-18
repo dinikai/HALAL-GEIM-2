@@ -13,7 +13,7 @@ public class EffenBullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            BArabFight.ArabHP -= 3;
+            BArabFight.ArabHP -= 4;
         }
     }
 }

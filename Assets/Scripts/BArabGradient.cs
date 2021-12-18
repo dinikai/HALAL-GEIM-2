@@ -9,6 +9,6 @@ public class BArabGradient : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(pointer.position);
+        transform.Translate(pointer.position * speed);
     }
 }

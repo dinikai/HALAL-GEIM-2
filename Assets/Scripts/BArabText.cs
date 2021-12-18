@@ -1,9 +1,12 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BArabText : MonoBehaviour
 {
-    [SerializeField] private AudioSource doomSource;
+    public AudioSource doomSource;
+    [SerializeField] private AudioSource deathSource;
     [SerializeField] private Animator fadeAnimator;
     [SerializeField] private GameObject[] enablableItems;
     [SerializeField] private GameObject bArab;
@@ -14,7 +17,9 @@ public class BArabText : MonoBehaviour
     private Text textObject;
     public string text, currentText = "";
     private int currentLetter = -1;
-    private bool hasVoice = true;
+    public bool hasVoice = true;
+    public delegate void AfterMethod();
+    private AfterMethod doAfter;
 
     void Start()
     {
@@ -24,10 +29,6 @@ public class BArabText : MonoBehaviour
         text = thinks[0];
 
         NextLetter();
-    }
-
-    private void Update()
-    {
     }
 
     public void NextLetter()
@@ -53,6 +54,11 @@ public class BArabText : MonoBehaviour
                 textSpeed = 0.04f;
                 hasVoice = false;
             }
+
+            if(PlayerData.ArabKilled)
+            {
+                StartCoroutine(ArabDeath());
+            }
         }
     }
 
@@ -65,15 +71,23 @@ public class BArabText : MonoBehaviour
         NextLetter();
     }
 
+    public void PrintToText(string newText, AfterMethod after)
+    {
+        text = newText;
+        currentText = "";
+        currentLetter = -1;
+
+        NextLetter();
+
+        doAfter = after;
+    }
+
     private void StartBegin()
     {
         fadeAnimator.Play("FadePanel1", 0, 0);
         doomSource.Play();
 
-        foreach (GameObject item in enablableItems)
-        {
-            item.SetActive(true);
-        }
+        SetEnable(true);
 
         bArab.SetActive(true);
         bArab.GetComponent<Animator>().Play("BArabIdle");
@@ -85,5 +99,30 @@ public class BArabText : MonoBehaviour
     private void E()
     {
         fight.PorkBombRain();
+    }
+
+    public void SetEnable(bool state)
+    {
+        foreach (GameObject item in enablableItems)
+        {
+            item.SetActive(state);
+        }
+    }
+
+    IEnumerator ArabDeath()
+    {
+        yield return new WaitForSeconds(2);
+
+        deathSource.Play();
+        bArab.SetActive(false);
+
+        StartCoroutine(BadEnding());
+    }
+
+    IEnumerator BadEnding()
+    {
+        yield return new WaitForSeconds(2);
+
+        SceneManager.LoadScene(ScenesName.BadEnd);
     }
 }
