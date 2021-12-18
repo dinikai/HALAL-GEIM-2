@@ -37,7 +37,7 @@ public class DialogController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonUp(0) && replicas.Count - 1 > PlayerData.DialogNumber)
+        if((Input.GetMouseButtonUp(0) || Input.touchCount > 0) && replicas.Count - 1 > PlayerData.DialogNumber)
         {
             NextDialog();
 
