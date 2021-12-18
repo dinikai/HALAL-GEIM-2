@@ -7,7 +7,6 @@ public class PlayerMove : MonoBehaviour
     private SpriteRenderer sprite;
     public float speed;
     private bool flip, walkingLeft, walkingRight;
-    [SerializeField] private GameObject mainCamera;
 
     void Start()
     {
@@ -18,13 +17,16 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(walkingRight)
+        if(!PorkchopPanel.PorkPanelActive && !SkrejalPanel.SkrejalPanelActive)
         {
-            rb.MovePosition(rb.position + Vector2.right * speed);
-        }
-        if (walkingLeft)
-        {
-            rb.MovePosition(rb.position + Vector2.left * speed);
+            if(walkingRight)
+            {
+                rb.MovePosition(rb.position + Vector2.right * speed);
+            }
+            if(walkingLeft)
+            {
+                rb.MovePosition(rb.position + Vector2.left * speed);
+            }
         }
     }
 

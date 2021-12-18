@@ -4,14 +4,38 @@ using UnityEngine;
 
 public class ItemUse : MonoBehaviour
 {
-    [SerializeField] private GameObject porkPanel;
+    [SerializeField] private GameObject porkPanel, skrejalPanel;
+    [SerializeField] private GameObject skrejal1, skrejal2, skrejal3, skrejal4;
+    public static int skrejalNumber;
     public static string SelectedItem { get; set; } = "";
 
     public void UseItem()
     {
-        if(SelectedItem == "pork")
+        switch(SelectedItem)
         {
-            porkPanel.SetActive(true);
+            case "pork":
+                porkPanel.SetActive(true);
+                PorkchopPanel.PorkPanelActive = true;
+                break;
+            case "skrejal":
+                switch(skrejalNumber)
+                {
+                    case 1:
+                        PlayerData.Skrejal1 = true;
+                        break;
+                    case 2:
+                        PlayerData.Skrejal2 = true;
+                        break;
+                    case 3:
+                        PlayerData.Skrejal3 = true;
+                        break;
+                    case 4:
+                        PlayerData.Skrejal4 = true;
+                        break;
+                }
+                skrejalPanel.SetActive(true);
+                PlayerData.SaveData();
+                break;
         }
     }
 
