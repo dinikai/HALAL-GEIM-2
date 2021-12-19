@@ -20,8 +20,7 @@ public class DialogController : MonoBehaviour
 
     private void Start()
     {
-        StreamReader stream = new StreamReader(Application.dataPath + "/PlayerData/replicas.4rp");
-        string replicasString = stream.ReadToEnd();
+        string replicasString = Dialogs.Replicas;
 
         string[] replicasLines = replicasString.Split('\n');
         for (int i = 0; i < replicasLines.Length; i++)
@@ -29,7 +28,7 @@ public class DialogController : MonoBehaviour
             replicas.Add(replicasLines[i].Split('>'));
         }
 
-        string personName = PersonIdToName(Convert.ToInt32(replicas[PlayerData.DialogNumber][0]));
+        string personName = Dialogs.Persons[0];
         dialogPerson.text = personName;
 
         dialogText.text = replicas[PlayerData.DialogNumber][1];
@@ -37,11 +36,11 @@ public class DialogController : MonoBehaviour
 
     void Update()
     {
-        if((Input.GetMouseButtonUp(0) || Input.touchCount > 0) && replicas.Count - 1 > PlayerData.DialogNumber)
+        if((Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)) && replicas.Count - 1 > PlayerData.DialogNumber)
         {
             NextDialog();
 
-            string personName = PersonIdToName(Convert.ToInt32(replicas[PlayerData.DialogNumber][0]));
+            string personName = Dialogs.Persons[0];
             dialogPerson.text = personName;
 
             string nextLocation = replicas[PlayerData.DialogNumber][2];
@@ -165,16 +164,6 @@ public class DialogController : MonoBehaviour
         lettersEnabled = true;
 
         AddLetter();
-    }
-
-    public static string PersonIdToName(int id)
-    {
-        StreamReader stream = new StreamReader(Application.dataPath + "/PlayerData/persons.4rp");
-        string personsString = stream.ReadToEnd();
-
-        string[] personsLines = personsString.Split('\n');
-
-        return personsLines[id];
     }
 
     private void AddLetter()
