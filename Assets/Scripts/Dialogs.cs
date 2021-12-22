@@ -1,8 +1,14 @@
-2>hi>0>0
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Dialogs : MonoBehaviour
+{
+    public static string Replicas { get; set; } = @"2>hi>0>0
 2>long time no see>0>0
 2>how much time has passed since the release of the last part...>0>0
 2>it was bad>0>0
-2>but this time0>0
+2>but this time>0>0
 2>you will enjoy to the fullest>0>0
 2>maybe>0>0
 0>Halal Halal Halal Halal Halal Halal Halal Halal Halal>Loc1>0
@@ -89,4 +95,14 @@
 2>he>0>0
 2>he eated porkchop...>0>0
 2>this dude deceived him....>0>0
-2>Yo next level! Этого не будет видно в игре>0>halalGeim2
+2>             >0>halalGeim2
+";
+    public static string[] Persons { get; set; } =
+    {
+        "you_thinks",
+        "you]Eeffenberg",
+        "TRUE HALAL",
+        "***H�$=�䞶@�D�8�8�",
+        "info"
+    };
+}

@@ -53,6 +53,7 @@ public class PlayerData : MonoBehaviour
         HP = 100;
         EatPorkchop = false;
         ArabKilled = false;
+        BArabFight.ArabHP = 600;
 
         PlayerPrefs.SetInt("dnum", DialogNumber);
         PlayerPrefs.SetInt("hp", HP);

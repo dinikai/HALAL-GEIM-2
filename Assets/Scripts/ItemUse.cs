@@ -6,7 +6,9 @@ public class ItemUse : MonoBehaviour
 {
     [SerializeField] private GameObject porkPanel, skrejalPanel;
     [SerializeField] private GameObject skrejal1, skrejal2, skrejal3, skrejal4;
+    [SerializeField] private AudioSource liftSound;
     public static int skrejalNumber;
+    public static Vector2 liftVector;
     public static string SelectedItem { get; set; } = "";
 
     public void UseItem()
@@ -35,6 +37,10 @@ public class ItemUse : MonoBehaviour
                 }
                 skrejalPanel.SetActive(true);
                 PlayerData.SaveData();
+                break;
+            case "lift":
+                GetComponent<Rigidbody2D>().MovePosition(liftVector);
+                liftSound.Play();
                 break;
         }
     }

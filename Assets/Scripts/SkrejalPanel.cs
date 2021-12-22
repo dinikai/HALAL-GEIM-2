@@ -10,5 +10,6 @@ public class SkrejalPanel : MonoBehaviour
     public void Close()
     {
         panel.SetActive(false);
+        SkrejalPanelActive = false;
     }
 }

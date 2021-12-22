@@ -13,6 +13,7 @@ public class PorkchopPanel : MonoBehaviour
         PlayerData.SaveData();
 
         panel.SetActive(false);
+        PorkPanelActive = false;
     }
 
     public void DoNot()
