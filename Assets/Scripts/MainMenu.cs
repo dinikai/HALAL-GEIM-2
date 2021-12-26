@@ -33,7 +33,13 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene(ScenesName.Intro);
+        /*if(PlayerData.DialogFinished)
+        {*/
+            SceneManager.LoadScene(ScenesName.Game1);
+        /*} else
+        {
+            SceneManager.LoadScene(ScenesName.Intro);
+        }*/
     }
 
     public void Exit()

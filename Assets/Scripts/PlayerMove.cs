@@ -2,22 +2,25 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    [SerializeField] private AllahFightCollider allahCollider;
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer sprite;
     public float speed;
     private bool flip, walkingLeft, walkingRight;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+
+        PlayerData.LoadData();
     }
 
     void FixedUpdate()
     {
-        if(!PorkchopPanel.PorkPanelActive && !SkrejalPanel.SkrejalPanelActive)
+        if(!PorkchopPanel.PorkPanelActive && !SkrejalPanel.SkrejalPanelActive && !allahCollider.Collided)
         {
             if(walkingRight)
             {
@@ -46,10 +49,16 @@ public class PlayerMove : MonoBehaviour
         animator.SetBool("IsMove", true);
     }
 
-    public void NoWalk()
+    public void NoRight()
+    {
+        walkingRight = false;
+
+        animator.SetBool("IsMove", false);
+    }
+
+    public void NoLeft()
     {
         walkingLeft = false;
-        walkingRight = false;
 
         animator.SetBool("IsMove", false);
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour
@@ -12,6 +11,9 @@ public class PlayerData : MonoBehaviour
     public static bool Skrejal2 { get; set; } = false;
     public static bool Skrejal3 { get; set; } = false;
     public static bool Skrejal4 { get; set; } = false;
+    public static bool DialogFinished { get; set; } = false;
+    public static bool SpeedImprove { get; set; } = false;
+    public static bool BreakedBarrier { get; set; } = false;
 
     public static void LoadData()
     {
@@ -23,6 +25,7 @@ public class PlayerData : MonoBehaviour
             EatPorkchop = Convert.ToBoolean(PlayerPrefs.GetInt("eatpork"));
         if(PlayerPrefs.HasKey("arabkill"))
             ArabKilled = Convert.ToBoolean(PlayerPrefs.GetInt("arabkill"));
+
         if(PlayerPrefs.HasKey("skr1"))
             Skrejal1 = Convert.ToBoolean(PlayerPrefs.GetInt("skr1"));
         if(PlayerPrefs.HasKey("skr2"))
@@ -31,6 +34,13 @@ public class PlayerData : MonoBehaviour
             Skrejal3 = Convert.ToBoolean(PlayerPrefs.GetInt("skr3"));
         if(PlayerPrefs.HasKey("skr4"))
             Skrejal4 = Convert.ToBoolean(PlayerPrefs.GetInt("skr4"));
+
+        if(PlayerPrefs.HasKey("dfinish"))
+            DialogFinished = Convert.ToBoolean(PlayerPrefs.GetInt("dfinish"));
+        if (PlayerPrefs.HasKey("impspeed"))
+            SpeedImprove = Convert.ToBoolean(PlayerPrefs.GetInt("impspeed"));
+        if (PlayerPrefs.HasKey("barrier"))
+            BreakedBarrier = Convert.ToBoolean(PlayerPrefs.GetInt("barrier"));
     }
 
     public static void SaveData()
@@ -39,10 +49,15 @@ public class PlayerData : MonoBehaviour
         PlayerPrefs.SetInt("hp", HP);
         PlayerPrefs.SetInt("eatpork", Convert.ToInt32(EatPorkchop));
         PlayerPrefs.SetInt("arabkill", Convert.ToInt32(ArabKilled));
+
         PlayerPrefs.SetInt("skr1", Convert.ToInt32(Skrejal1));
         PlayerPrefs.SetInt("skr2", Convert.ToInt32(Skrejal2));
         PlayerPrefs.SetInt("skr3", Convert.ToInt32(Skrejal3));
         PlayerPrefs.SetInt("skr4", Convert.ToInt32(Skrejal4));
+
+        PlayerPrefs.SetInt("dfinish", Convert.ToInt32(DialogFinished));
+        PlayerPrefs.SetInt("impspeed", Convert.ToInt32(SpeedImprove));
+        PlayerPrefs.SetInt("barrier", Convert.ToInt32(BreakedBarrier));
 
         PlayerPrefs.Save();
     }
@@ -54,11 +69,27 @@ public class PlayerData : MonoBehaviour
         EatPorkchop = false;
         ArabKilled = false;
         BArabFight.ArabHP = 600;
+        Skrejal1 = false;
+        Skrejal2 = false;
+        Skrejal3 = false;
+        Skrejal4 = false;
+        DialogFinished = false;
+        SpeedImprove = false;
+        BreakedBarrier = false;
 
         PlayerPrefs.SetInt("dnum", DialogNumber);
         PlayerPrefs.SetInt("hp", HP);
         PlayerPrefs.SetInt("eatpork", Convert.ToInt32(EatPorkchop));
         PlayerPrefs.SetInt("arabkill", Convert.ToInt32(ArabKilled));
+
+        PlayerPrefs.SetInt("skr1", Convert.ToInt32(Skrejal1));
+        PlayerPrefs.SetInt("skr2", Convert.ToInt32(Skrejal2));
+        PlayerPrefs.SetInt("skr3", Convert.ToInt32(Skrejal3));
+        PlayerPrefs.SetInt("skr4", Convert.ToInt32(Skrejal4));
+
+        PlayerPrefs.SetInt("dfinish", Convert.ToInt32(DialogFinished));
+        PlayerPrefs.SetInt("impspeed", Convert.ToInt32(SpeedImprove));
+        PlayerPrefs.SetInt("barrier", Convert.ToInt32(BreakedBarrier));
 
         PlayerPrefs.Save();
     }
@@ -74,4 +105,5 @@ public struct ScenesName
     public static string RealFriend { get; } = "RealFriendFight";
     public static string RealLose { get; } = "BArabLose";
     public static string BadEnd { get; } = "BadEnd";
+    public static string Disclaimer { get; } = "Disclaimer";
 }
