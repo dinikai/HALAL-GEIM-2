@@ -4,22 +4,32 @@ using UnityEngine;
 
 public class ItemUse : MonoBehaviour
 {
-    [SerializeField] private GameObject porkPanel, skrejalPanel;
-    [SerializeField] private GameObject skrejal1, skrejal2, skrejal3, skrejal4;
-    [SerializeField] private AudioSource liftSound;
+    [SerializeField] private GameObject porkPanel, skrejalPanel, basementBarrier, speedPanel, speedUI;
+    [SerializeField] private AudioSource liftSound, itemCollectSound, barrierBreakSound;
+    [SerializeField] private SkrejalUI skrejalUIController;
     public static int skrejalNumber;
     public static Vector2 liftVector;
-    public static string SelectedItem { get; set; } = "";
+    public static GameObject useItem;
+    public static UsableItem SelectedItem { get; set; }
+
+    private void Start()
+    {
+        if(PlayerData.SpeedImprove)
+        {
+            GetComponent<PlayerMove>().speed += 0.05f;
+        }
+    }
 
     public void UseItem()
     {
         switch(SelectedItem)
         {
-            case "pork":
+            case UsableItem.Pork:
                 porkPanel.SetActive(true);
                 PorkchopPanel.PorkPanelActive = true;
+                itemCollectSound.Play();
                 break;
-            case "skrejal":
+            case UsableItem.Skrejal:
                 switch(skrejalNumber)
                 {
                     case 1:
@@ -36,11 +46,32 @@ public class ItemUse : MonoBehaviour
                         break;
                 }
                 skrejalPanel.SetActive(true);
+                Destroy(useItem);
+                skrejalUIController.FindSkrejal(skrejalNumber);
+                itemCollectSound.Play();
+
+                if(PlayerData.Skrejal1 && PlayerData.Skrejal2 && PlayerData.Skrejal3 && PlayerData.Skrejal4)
+                {
+                    Destroy(basementBarrier);
+                    PlayerData.BreakedBarrier = true;
+                    barrierBreakSound.Play();
+                }
+
                 PlayerData.SaveData();
                 break;
-            case "lift":
-                GetComponent<Rigidbody2D>().MovePosition(liftVector);
+            case UsableItem.Lift:
+                GetComponent<Rigidbody2D>().position = liftVector;
                 liftSound.Play();
+                break;
+            case UsableItem.SpeedUpImprove:
+                speedPanel.SetActive(true);
+                speedUI.SetActive(true);
+
+                PlayerData.SpeedImprove = true;
+                PlayerData.SaveData();
+                Destroy(useItem);
+
+                GetComponent<PlayerMove>().speed += 0.05f;
                 break;
         }
     }
@@ -58,4 +89,12 @@ public class ItemUse : MonoBehaviour
         PlayerPrefs.SetInt("epork", 1);
         PlayerPrefs.Save();
     }
+}
+
+public enum UsableItem
+{
+    Pork,
+    Skrejal,
+    Lift,
+    SpeedUpImprove
 }

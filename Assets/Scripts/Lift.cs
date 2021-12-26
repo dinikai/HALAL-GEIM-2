@@ -11,7 +11,7 @@ public class Lift : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             useButton.interactable = true;
-            ItemUse.SelectedItem = "lift";
+            ItemUse.SelectedItem = UsableItem.Lift;
             ItemUse.liftVector = vector;
         }
     }

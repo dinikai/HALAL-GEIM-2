@@ -11,8 +11,9 @@ public class Skrejal : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             useButton.interactable = true;
-            ItemUse.SelectedItem = "skrejal";
+            ItemUse.SelectedItem = UsableItem.Skrejal;
             ItemUse.skrejalNumber = skrejalNumber;
+            ItemUse.useItem = gameObject;
         }
     }
 

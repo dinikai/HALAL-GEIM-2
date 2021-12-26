@@ -10,7 +10,8 @@ public class Porkchop : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             useButton.interactable = true;
-            ItemUse.SelectedItem = "pork";
+            ItemUse.SelectedItem = UsableItem.Pork;
+            ItemUse.useItem = gameObject;
         }
     }
 
