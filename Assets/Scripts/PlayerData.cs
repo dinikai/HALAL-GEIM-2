@@ -14,33 +14,50 @@ public class PlayerData : MonoBehaviour
     public static bool DialogFinished { get; set; } = false;
     public static bool SpeedImprove { get; set; } = false;
     public static bool BreakedBarrier { get; set; } = false;
+    public static bool Skate1 { get; set; } = false;
+    public static bool Skate2 { get; set; } = false;
+    public static bool Skate3 { get; set; } = false;
+    public static bool SurfComplete { get; set; } = false;
+    public static bool AllahFriended { get; set; } = false;
 
     public static void LoadData()
     {
-        if(PlayerPrefs.HasKey("dnum"))
+        if (PlayerPrefs.HasKey("dnum"))
             DialogNumber = PlayerPrefs.GetInt("dnum");
-        if(PlayerPrefs.HasKey("hp"))
+        if (PlayerPrefs.HasKey("hp"))
             HP = PlayerPrefs.GetInt("hp");
-        if(PlayerPrefs.HasKey("eatpork"))
+        if (PlayerPrefs.HasKey("eatpork"))
             EatPorkchop = Convert.ToBoolean(PlayerPrefs.GetInt("eatpork"));
-        if(PlayerPrefs.HasKey("arabkill"))
+        if (PlayerPrefs.HasKey("arabkill"))
             ArabKilled = Convert.ToBoolean(PlayerPrefs.GetInt("arabkill"));
 
-        if(PlayerPrefs.HasKey("skr1"))
+        if (PlayerPrefs.HasKey("skr1"))
             Skrejal1 = Convert.ToBoolean(PlayerPrefs.GetInt("skr1"));
-        if(PlayerPrefs.HasKey("skr2"))
+        if (PlayerPrefs.HasKey("skr2"))
             Skrejal2 = Convert.ToBoolean(PlayerPrefs.GetInt("skr2"));
-        if(PlayerPrefs.HasKey("skr3"))
+        if (PlayerPrefs.HasKey("skr3"))
             Skrejal3 = Convert.ToBoolean(PlayerPrefs.GetInt("skr3"));
-        if(PlayerPrefs.HasKey("skr4"))
+        if (PlayerPrefs.HasKey("skr4"))
             Skrejal4 = Convert.ToBoolean(PlayerPrefs.GetInt("skr4"));
 
-        if(PlayerPrefs.HasKey("dfinish"))
+        if (PlayerPrefs.HasKey("dfinish"))
             DialogFinished = Convert.ToBoolean(PlayerPrefs.GetInt("dfinish"));
         if (PlayerPrefs.HasKey("impspeed"))
             SpeedImprove = Convert.ToBoolean(PlayerPrefs.GetInt("impspeed"));
         if (PlayerPrefs.HasKey("barrier"))
             BreakedBarrier = Convert.ToBoolean(PlayerPrefs.GetInt("barrier"));
+
+        if (PlayerPrefs.HasKey("skate1"))
+            Skate1 = Convert.ToBoolean(PlayerPrefs.GetInt("skate1"));
+        if (PlayerPrefs.HasKey("skate2"))
+            Skate2 = Convert.ToBoolean(PlayerPrefs.GetInt("skate2"));
+        if (PlayerPrefs.HasKey("skate3"))
+            Skate3 = Convert.ToBoolean(PlayerPrefs.GetInt("skate3"));
+
+        if (PlayerPrefs.HasKey("surfcomp"))
+            SurfComplete = Convert.ToBoolean(PlayerPrefs.GetInt("surfcomp"));
+        if (PlayerPrefs.HasKey("allah"))
+            AllahFriended = Convert.ToBoolean(PlayerPrefs.GetInt("allah"));
     }
 
     public static void SaveData()
@@ -59,6 +76,13 @@ public class PlayerData : MonoBehaviour
         PlayerPrefs.SetInt("impspeed", Convert.ToInt32(SpeedImprove));
         PlayerPrefs.SetInt("barrier", Convert.ToInt32(BreakedBarrier));
 
+        PlayerPrefs.SetInt("skate1", Convert.ToInt32(Skate1));
+        PlayerPrefs.SetInt("skate2", Convert.ToInt32(Skate2));
+        PlayerPrefs.SetInt("skate3", Convert.ToInt32(Skate3));
+
+        PlayerPrefs.SetInt("surfcomp", Convert.ToInt32(SurfComplete));
+        PlayerPrefs.SetInt("allah", Convert.ToInt32(AllahFriended));
+
         PlayerPrefs.Save();
     }
 
@@ -76,6 +100,11 @@ public class PlayerData : MonoBehaviour
         DialogFinished = false;
         SpeedImprove = false;
         BreakedBarrier = false;
+        Skate1 = false;
+        Skate2 = false;
+        Skate3 = false;
+        SurfComplete = false;
+        AllahFriended = false;
 
         PlayerPrefs.SetInt("dnum", DialogNumber);
         PlayerPrefs.SetInt("hp", HP);
@@ -90,6 +119,13 @@ public class PlayerData : MonoBehaviour
         PlayerPrefs.SetInt("dfinish", Convert.ToInt32(DialogFinished));
         PlayerPrefs.SetInt("impspeed", Convert.ToInt32(SpeedImprove));
         PlayerPrefs.SetInt("barrier", Convert.ToInt32(BreakedBarrier));
+
+        PlayerPrefs.SetInt("skate1", Convert.ToInt32(Skate1));
+        PlayerPrefs.SetInt("skate2", Convert.ToInt32(Skate2));
+        PlayerPrefs.SetInt("skate3", Convert.ToInt32(Skate3));
+
+        PlayerPrefs.SetInt("surfcomp", Convert.ToInt32(SurfComplete));
+        PlayerPrefs.SetInt("allah", Convert.ToInt32(AllahFriended));
 
         PlayerPrefs.Save();
     }
@@ -106,4 +142,5 @@ public struct ScenesName
     public static string RealLose { get; } = "BArabLose";
     public static string BadEnd { get; } = "BadEnd";
     public static string Disclaimer { get; } = "Disclaimer";
+    public static string Surf { get; } = "SubwaySurf";
 }

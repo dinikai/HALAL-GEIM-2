@@ -1,15 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SurfPlayerMove : MonoBehaviour
 {
-    [SerializeField] private SwipeDetector detector;
+    public SwipeDetector detector;
+    [SerializeField] private AudioSource bonkAudio;
     [SerializeField] private Transform mainCamera;
     public Swipe lastSwipe;
     private Rigidbody rb;
     public bool OnGround = false, OnTrain = false, IsAlive = true, goesDown = false;
-    public float speed, jumpForce, downForce, strafeJumpSpeed, xLeft, xMiddle, xRight, strafeSpeed, camNormal, camUp, camSpeed;
+    public float speed, jumpForce, downForce, strafeJumpSpeed, xLeft, xMiddle, xRight, strafeSpeed, camNormal, camUp, camSpeed, acceleration, maxAcceleration;
     public int xState = 0, cameraState = 0;
 
     private void Start()
@@ -26,9 +27,12 @@ public class SurfPlayerMove : MonoBehaviour
 
         MoveX();
         CameraMove();
+
+        if(speed <= maxAcceleration)
+            speed += acceleration;
     }
 
-    private void SwipeHandler(Swipe swipe)
+    public void SwipeHandler(Swipe swipe)
     {
         lastSwipe = swipe;
         SwipeDirection dir = swipe.Direction;
@@ -76,12 +80,11 @@ public class SurfPlayerMove : MonoBehaviour
             IsAlive = false;
 
             detector.SwipeEvent -= SwipeHandler;
-        }
-    }
+            bonkAudio.Play();
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Sideway"))
+            StartCoroutine(Death());
+        }
+        else if (collision.gameObject.CompareTag("Sideway"))
         {
             if (xState == 1 || xState == -1)
             {
@@ -149,5 +152,12 @@ public class SurfPlayerMove : MonoBehaviour
 
             mainCamera.position = Vector3.MoveTowards(mainCamera.position, vector, camSpeed * Time.fixedDeltaTime);
         }
+    }
+
+    private IEnumerator Death()
+    {
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene(ScenesName.Game1);
     }
 }

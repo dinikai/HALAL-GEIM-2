@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Intro : MonoBehaviour
 {
+    [SerializeField] private string scene;
     private Text textObject;
     private AudioSource pig;
     public string text, currentText = "";
@@ -36,6 +37,6 @@ public class Intro : MonoBehaviour
 
     private void StartBegin()
     {
-        SceneManager.LoadScene(ScenesName.Begin);
+        SceneManager.LoadScene(scene);
     }
 }
