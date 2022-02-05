@@ -1543,8 +1543,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893302876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.41, y: -2.06, z: 0}
-  m_LocalScale: {x: 0.5771, y: 0.5771, z: 0.5771}
+  m_LocalPosition: {x: -6.6529, y: -1.403, z: 0}
+  m_LocalScale: {x: 0.37800047, y: 0.37800047, z: 0.37800047}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -9016,9 +9016,8 @@ MonoBehaviour:
   - {fileID: 979935219}
   bArab: {fileID: 689502403}
   thinks:
-  - '*you... you eat porkchop... "you eat porkchop so many times...". it says to
-    you allah. but you... you so STUPID. IN THIS WORLD I CONTROLLED THIS GAME. YOU
-    DONT DESTROYED "HIM". WHY? ITS YOUR ENEMY. NOW YOUR TIME TO DIE. GOODBYE MANN'
+  - '*you... you killed Allah. are you think to i am dont kill YOU? stupid mann.
+    your friend dont come to help you more. now I am your new friend. DIE'
   - '*all your friends... HE HAS DIED'
   - '*HALAL GEIM was controlled by ME'
   - '*you just a PUPPET'

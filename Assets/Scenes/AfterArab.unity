@@ -459,9 +459,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11e69bb60ac0d348b48ea455fca2b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: Begin
-  text: Once a person close to me underwent the same suffering as I did. I wanted
-    to help him, and now I will tell this story.
+  scene: GoodEnd
+  text: After defeating him, he and he were released from hell. Allah was defeated,
+    after that they lived happily ever after.
   currentText: 
 --- !u!82 &971204545
 AudioSource:

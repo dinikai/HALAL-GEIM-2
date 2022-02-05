@@ -14,8 +14,6 @@ public class PlayerMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
-
-        PlayerData.LoadData();
     }
 
     void FixedUpdate()
