@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class AwakePosition : MonoBehaviour
 {
-    [SerializeField] private GameObject surfCollider, surfImage;
-    public Vector2 afterSubway;
+    [SerializeField] private GameObject surfCollider, surfImage, allahCollider, barrier, allahImage;
+    public Vector2 afterSubway, afterAllah;
     private Rigidbody2D rb;
 
     private void Awake()
@@ -17,6 +17,14 @@ public class AwakePosition : MonoBehaviour
             rb.position = afterSubway;
 
             surfImage.SetActive(true);
+        }
+        if(PlayerData.AllahKilled)
+        {
+            Destroy(allahCollider);
+            Destroy(barrier);
+            rb.position = afterAllah;
+
+            allahImage.SetActive(true);
         }
     }
 }

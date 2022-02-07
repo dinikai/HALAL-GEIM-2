@@ -102,7 +102,8 @@ public class Dialogs : MonoBehaviour
         "you_thinks",
         "you]Eeffenberg",
         "TRUE HALAL",
-        "***Hê$=î‰û∂@„Dπ8±8À",
+        "dfg",
+        "***zabivnoy",
         "info"
     };
 }

@@ -28,7 +28,7 @@ public class DialogController : MonoBehaviour
             replicas.Add(replicasLines[i].Split('>'));
         }
 
-        string personName = Dialogs.Persons[0];
+        string personName = Dialogs.Persons[Convert.ToInt32(replicas[PlayerData.DialogNumber][0])];
         dialogPerson.text = personName;
 
         dialogText.text = replicas[PlayerData.DialogNumber][1];
@@ -40,7 +40,7 @@ public class DialogController : MonoBehaviour
         {
             NextDialog();
 
-            string personName = Dialogs.Persons[0];
+            string personName = Dialogs.Persons[Convert.ToInt32(replicas[PlayerData.DialogNumber][0])];
             dialogPerson.text = personName;
 
             string nextLocation = replicas[PlayerData.DialogNumber][2];

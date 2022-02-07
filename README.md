@@ -5,5 +5,5 @@ Stupid android game by dinikai and Shashlik
 Please dont play!!
 
 ```diff
--WARNING!!!!!!!!!!!!!!!! IT IS DEBUG VERSION OF GAME!!! WE NOT WANT MERGE IT WITH MASTER!
++game makers is RUSSIANS@!!!
 ```
