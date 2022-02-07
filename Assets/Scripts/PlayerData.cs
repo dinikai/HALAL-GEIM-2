@@ -18,7 +18,7 @@ public class PlayerData : MonoBehaviour
     public static bool Skate2 { get; set; } = false;
     public static bool Skate3 { get; set; } = false;
     public static bool SurfComplete { get; set; } = false;
-    public static bool AllahFriended { get; set; } = false;
+    public static bool AllahKilled { get; set; } = false;
 
     public static void LoadData()
     {
@@ -57,7 +57,7 @@ public class PlayerData : MonoBehaviour
         if (PlayerPrefs.HasKey("surfcomp"))
             SurfComplete = Convert.ToBoolean(PlayerPrefs.GetInt("surfcomp"));
         if (PlayerPrefs.HasKey("allah"))
-            AllahFriended = Convert.ToBoolean(PlayerPrefs.GetInt("allah"));
+            AllahKilled = Convert.ToBoolean(PlayerPrefs.GetInt("allah"));
     }
 
     public static void SaveData()
@@ -81,7 +81,7 @@ public class PlayerData : MonoBehaviour
         PlayerPrefs.SetInt("skate3", Convert.ToInt32(Skate3));
 
         PlayerPrefs.SetInt("surfcomp", Convert.ToInt32(SurfComplete));
-        PlayerPrefs.SetInt("allah", Convert.ToInt32(AllahFriended));
+        PlayerPrefs.SetInt("allah", Convert.ToInt32(AllahKilled));
 
         PlayerPrefs.Save();
     }
@@ -104,7 +104,7 @@ public class PlayerData : MonoBehaviour
         Skate2 = false;
         Skate3 = false;
         SurfComplete = false;
-        AllahFriended = false;
+        AllahKilled = false;
 
         PlayerPrefs.SetInt("dnum", DialogNumber);
         PlayerPrefs.SetInt("hp", HP);
@@ -125,7 +125,7 @@ public class PlayerData : MonoBehaviour
         PlayerPrefs.SetInt("skate3", Convert.ToInt32(Skate3));
 
         PlayerPrefs.SetInt("surfcomp", Convert.ToInt32(SurfComplete));
-        PlayerPrefs.SetInt("allah", Convert.ToInt32(AllahFriended));
+        PlayerPrefs.SetInt("allah", Convert.ToInt32(AllahKilled));
 
         PlayerPrefs.Save();
     }
@@ -139,7 +139,9 @@ public struct ScenesName
     public static string Title { get; } = "Title1";
     public static string Game1 { get; } = "HalalGeim2";
     public static string RealFriend { get; } = "RealFriendFight";
+    public static string Allah { get; } = "AllahFight";
     public static string RealLose { get; } = "BArabLose";
+    public static string AllahLose { get; } = "AllahLose";
     public static string BadEnd { get; } = "BadEnd";
     public static string Disclaimer { get; } = "Disclaimer";
     public static string Surf { get; } = "SubwaySurf";

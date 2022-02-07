@@ -5,7 +5,7 @@ public class Pig : MonoBehaviour
 {
     private void Start()
     {
-        Invoke(nameof(Sdox), 2);
+        Invoke(nameof(Sdox), 3);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -13,7 +13,10 @@ public class Pig : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             collision.GetComponent<Animator>().Play("EffewbergHurt", 0, 0);
-            PlayerData.HP -= 3;
+            if (PlayerData.EatPorkchop)
+                PlayerData.HP -= 10;
+            else
+                PlayerData.HP -= 3;
             Destroy(gameObject);
         }
     }

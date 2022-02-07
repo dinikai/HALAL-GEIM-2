@@ -4817,7 +4817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf0532b9c57df44ebe364d53bd7bc62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
+  mode: 1
   minSwipeDifference: 40
 --- !u!4 &841711777
 Transform:

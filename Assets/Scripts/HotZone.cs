@@ -31,7 +31,7 @@ public class HotZone : MonoBehaviour
 
             if (InZone)
             {
-                PlayerData.HP -= 3;
+                PlayerData.HP -= 7;
                 healthSlider.value = PlayerData.HP;
                 damageSound.Play();
             }

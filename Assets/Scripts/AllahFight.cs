@@ -5,21 +5,22 @@ using UnityEngine.UI;
 
 public class AllahFight : MonoBehaviour
 {
-    [SerializeField] private AudioSource boomSound, minigunSound, diorSound;
+    [SerializeField] private AudioSource boomSound, sirenSound, pigSound, diorSound, deathSound;
     [SerializeField] private GameObject effenBullet, effen, minigunBullet, bArab, pigBullet;
     [SerializeField] private Slider effenSlider, bArabSlider;
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Animator backgroundAnim, cantAttack;
-    [SerializeField] private AnimationClip pigThrowClip;
+    [SerializeField] private Animator backgroundAnim, cantAttack, hitZoneRight, hitZoneLeft;
+    [SerializeField] private AnimationClip pigThrowClip, hitZoneWarnClip;
     [SerializeField] private ParticleSystem particles;
     [SerializeField] private Sprite allahKilled;
-    public static int AllahHP = 50;
+    [SerializeField] private float decrementPig, decrementLoop, pigLoopMaxDecrement, pigMaxDecrement;
+    public static int AllahHP = 2;
     public float minigunDelay = 10, bombDelay = 7;
-    public float speed;
+    public float speed, loopTimeDecrement, pigTimeDecrement;
     public float syncTime, pigSpeed;
     public int lastHp;
     private int pigCount;
-    private bool isRight, isLeft, isUp, isDown;
+    private bool isRight, isLeft, isUp, isDown, fireFlag;
     public static bool Dogovoril = false;
 
     void Start()
@@ -28,6 +29,7 @@ public class AllahFight : MonoBehaviour
 
         StartCoroutine(PigAttackLoop());
         StartCoroutine(BArabMusicSync());
+        StartCoroutine(KulakAttackLoop());
 
         particles.Stop();
     }
@@ -57,27 +59,36 @@ public class AllahFight : MonoBehaviour
         if (PlayerData.HP <= 0)
         {
             PlayerData.HP = lastHp;
-            AllahHP = 600;
+            AllahHP = 400;
             Dogovoril = false;
 
-            SceneManager.LoadScene(ScenesName.RealLose);
+            SceneManager.LoadScene(ScenesName.AllahLose);
         }
 
-        if (AllahHP <= 0 && !PlayerData.ArabKilled)
+        if (AllahHP <= 200 && !fireFlag)
         {
-            PlayerData.ArabKilled = true;
+            Animator bArabAnim = bArab.GetComponent<Animator>();
+            bArabAnim.Play("AllahFire", 1, 0);
+            bArabAnim.SetBool("IsFire", true);
+
+            fireFlag = true;
+        }
+
+        if (AllahHP <= 0 && !PlayerData.AllahKilled)
+        {
+            PlayerData.AllahKilled = true;
 
             bArab.SetActive(true);
             particles.Stop();
-            minigunSound.Stop();
-            bArab.GetComponent<Animator>().SetBool("IsPig", false);
+            pigSound.Stop();
             Destroy(bArab.GetComponent<Animator>());
-            bArab.GetComponent<SpriteRenderer>().sprite = allahKilled;
             bArab.GetComponent<Rigidbody2D>().MovePosition(new Vector2(8.5f, 0f));
+            Destroy(backgroundAnim);
+            GetComponent<AudioSource>().Stop();
+            StopAllCoroutines();
+            StartCoroutine(AllahKill());
 
             PlayerData.SaveData();
-
-            StopAllCoroutines();
         }
 
         GameObject[] pigs = GameObject.FindGameObjectsWithTag("Pig");
@@ -88,15 +99,25 @@ public class AllahFight : MonoBehaviour
         }
     }
 
+    private IEnumerator AllahKill()
+    {
+        yield return new WaitForSeconds(2);
+        bArab.SetActive(false);
+        deathSound.Play();
+
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(ScenesName.Game1);
+    }
+
     public void Attack()
     {
-        /*if (PlayerData.EatPorkchop)
-        {*/
+        if (PlayerData.EatPorkchop)
+        {
             cantAttack.Play("HaramDetected", 0, 0);
-        /*} else
+        } else
         {
             Instantiate(effenBullet, effen.transform.position, Quaternion.Euler(0, 0, 0));
-        //}*/
+        }
     }
 
     public void Right()
@@ -143,9 +164,31 @@ public class AllahFight : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(12);
+            yield return new WaitForSeconds(12 - loopTimeDecrement);
+            if(loopTimeDecrement < pigLoopMaxDecrement)
+            {
+                loopTimeDecrement += decrementLoop;
+            }
 
             StartCoroutine(PigGo());
+        }
+    }
+
+    private IEnumerator KulakAttackLoop()
+    {
+        while (true)
+        {
+            if (fireFlag)
+            {
+                yield return new WaitForSeconds(10 - loopTimeDecrement);
+                if (loopTimeDecrement < pigLoopMaxDecrement)
+                {
+                    loopTimeDecrement += decrementLoop;
+                }
+
+                StartCoroutine(KulakGo());
+            }
+            yield return new WaitForEndOfFrame();
         }
     }
 
@@ -162,11 +205,15 @@ public class AllahFight : MonoBehaviour
         particles.Play();
     }
 
-    public IEnumerator PigGo()
+    private IEnumerator PigGo()
     {
         while (pigCount < 4)
         {
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.8f - pigTimeDecrement);
+            if (pigTimeDecrement < pigMaxDecrement)
+            {
+                pigTimeDecrement += decrementPig;
+            }
 
             Animator bArabAnim = bArab.GetComponent<Animator>();
             bArabAnim.Play("AllahThrowPig", 1, 0);
@@ -174,9 +221,50 @@ public class AllahFight : MonoBehaviour
             yield return new WaitForSeconds(pigThrowClip.length);
 
             GameObject pig = Instantiate(pigBullet, bArab.transform.position, Quaternion.Euler(0, 0, 0));
+            pigSound.Play();
             pigCount++;
         }
 
         pigCount = 0;
+    }
+
+    public IEnumerator KulakGo()
+    {
+        int zoneNum = Random.Range(0, 2);
+        if(zoneNum == 0)
+        {
+            hitZoneLeft.Play("HitZoneWarn");
+        } else
+        {
+            hitZoneRight.Play("HitZoneWarn");
+        }
+        sirenSound.Play();
+        yield return new WaitForSeconds(hitZoneWarnClip.length + 0.5f);
+
+        if (zoneNum == 0)
+        {
+            hitZoneLeft.Play("HitZoneDamage");
+            HitZone zone = hitZoneLeft.GetComponent<HitZone>();
+            if(zone.inZone)
+            {
+                effen.GetComponent<Animator>().Play("EffewbergHurt", 0, 0);
+                PlayerData.HP -= 6;
+                effenSlider.value = PlayerData.HP;
+            }
+        }
+        else
+        {
+            hitZoneRight.Play("HitZoneDamage");
+            HitZone zone = hitZoneRight.GetComponent<HitZone>();
+            if (zone.inZone)
+            {
+                effen.GetComponent<Animator>().Play("EffewbergHurt", 0, 0);
+                PlayerData.HP -= 6;
+                effenSlider.value = PlayerData.HP;
+            }
+        }
+        Animator bArabAnim = bArab.GetComponent<Animator>();
+        bArabAnim.Play("FireKulak", 1, 0);
+        boomSound.Play();
     }
 }

@@ -15,5 +15,9 @@ public class EffenBullet : MonoBehaviour
         {
             BArabFight.ArabHP -= 4;
         }
+        if (other.CompareTag("Allah"))
+        {
+            AllahFight.AllahHP -= 4;
+        }
     }
 }

@@ -460,8 +460,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: GoodEnd
-  text: After defeating him, he and he were released from hell. Allah was defeated,
-    after that they lived happily ever after.
+  text: After defeating him, Effewberg and Effenberg were released from hell. Allah
+    was defeated, after that they lived happily ever after.
   currentText: 
 --- !u!82 &971204545
 AudioSource:

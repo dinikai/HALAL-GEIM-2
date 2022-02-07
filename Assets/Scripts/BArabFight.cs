@@ -13,7 +13,7 @@ public class BArabFight : MonoBehaviour
     [SerializeField] private ParticleSystem particles;
     [SerializeField] private BArabText arabText;
     [SerializeField] private Sprite arabKilled;
-    public static int ArabHP = 50;
+    public static int ArabHP = 600;
     public float minigunDelay = 10, bombDelay = 7;
     public float speed;
     private int bulletsCount = 0, minigunBulletsCount = 0;
@@ -71,7 +71,7 @@ public class BArabFight : MonoBehaviour
             PlayerData.ArabKilled = true;
             Dogovoril = false;
 
-            arabText.PrintToText("*wwwhhhaaat. you killed me. its very fcking.. i think you very weak. but you... ...you SO STUPID. AHAHAHAHAHAHAHAHAHAHHAHAHAHAHA");
+            arabText.PrintToText("*wwwhhhaaat. you killed me. its very fcking.. i think you very weak. but you...");
             arabText.SetEnable(false);
             bArab.SetActive(true);
             arabText.doomSource.Stop();
