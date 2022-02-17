@@ -2159,8 +2159,8 @@ MonoBehaviour:
   mustacheSound: {fileID: 980947812}
   musicFade: {fileID: 1023256659}
   coinsText: {fileID: 1853387233}
-  normalProfile: {fileID: 11400000, guid: cfd3a2ed55b3a4946b81c4c3a7877af9, type: 2}
-  mustacheProfile: {fileID: 11400000, guid: cd855b6fd83bd5244a570d3ae874c75a, type: 2}
+  normalProfile: {fileID: 0}
+  mustacheProfile: {fileID: 0}
   mainVolume: {fileID: 720324062}
   skatesNumber: 0
   coinsNumber: 0
@@ -4147,7 +4147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: cfd3a2ed55b3a4946b81c4c3a7877af9, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 9fe3e772a745ffa4fb3bec03430cc019, type: 2}
   isGlobal: 1
   blendDistance: 0
   weight: 1
@@ -12972,6 +12972,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 515333062}
     m_Modifications:
+    - target: {fileID: -9206744143728945752, guid: 0b7e71bb0cbca2e43b5426618c804383,
+        type: 3}
+      propertyPath: skateNumber
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2156595548215342500, guid: 0b7e71bb0cbca2e43b5426618c804383,
         type: 3}
       propertyPath: m_RootOrder

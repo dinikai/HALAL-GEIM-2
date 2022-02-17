@@ -13,11 +13,11 @@ public class EffenBullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            BArabFight.ArabHP -= 4;
+            BArabFight.ArabHP -= 3;
         }
         if (other.CompareTag("Allah"))
         {
-            AllahFight.AllahHP -= 4;
+            AllahFight.AllahHP -= 3;
         }
     }
 }

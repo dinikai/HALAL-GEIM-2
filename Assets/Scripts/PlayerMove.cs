@@ -7,7 +7,8 @@ public class PlayerMove : MonoBehaviour
     private Animator animator;
     private SpriteRenderer sprite;
     public float speed;
-    private bool flip, walkingLeft, walkingRight;
+    public bool canMove = true;
+    private bool walkingLeft, walkingRight;
 
     void Awake()
     {
@@ -18,7 +19,7 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!PorkchopPanel.PorkPanelActive && !SkrejalPanel.SkrejalPanelActive && !allahCollider.Collided)
+        if(!PorkchopPanel.PorkPanelActive && !SkrejalPanel.SkrejalPanelActive && !allahCollider.Collided && canMove)
         {
             if(walkingRight)
             {

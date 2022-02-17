@@ -531,8 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0bb9e089c7910e48989afa706091e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: 'you NEVER beat me... AHAHAHHAHAHAHAHAHAHA. but.. I WANT TO KILL YOU AGAIN.
-    AHAHAHAHAHAHAHAHAHAHAHAHAHA '
+  text: '"ha."'
   currentText: 
 --- !u!82 &1234848540
 AudioSource:
@@ -857,8 +856,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1234848539}
-        m_TargetAssemblyTypeName: BArabLoseText, Assembly-CSharp
+      - m_Target: {fileID: 2060002948}
+        m_TargetAssemblyTypeName: AllahLose, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -918,6 +917,7 @@ GameObject:
   - component: {fileID: 2060002947}
   - component: {fileID: 2060002946}
   - component: {fileID: 2060002945}
+  - component: {fileID: 2060002948}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -990,3 +990,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2060002948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060002944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad3202dee4d94b4ca282a40a68ab645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

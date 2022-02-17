@@ -14,7 +14,7 @@ public class AllahFight : MonoBehaviour
     [SerializeField] private ParticleSystem particles;
     [SerializeField] private Sprite allahKilled;
     [SerializeField] private float decrementPig, decrementLoop, pigLoopMaxDecrement, pigMaxDecrement;
-    public static int AllahHP = 2;
+    public static int AllahHP = 400;
     public float minigunDelay = 10, bombDelay = 7;
     public float speed, loopTimeDecrement, pigTimeDecrement;
     public float syncTime, pigSpeed;
@@ -62,7 +62,10 @@ public class AllahFight : MonoBehaviour
             AllahHP = 400;
             Dogovoril = false;
 
-            SceneManager.LoadScene(ScenesName.AllahLose);
+            if(PlayerData.EatPorkchop)
+                SceneManager.LoadScene(ScenesName.BadEnd);
+            else
+                SceneManager.LoadScene(ScenesName.AllahLose);
         }
 
         if (AllahHP <= 200 && !fireFlag)

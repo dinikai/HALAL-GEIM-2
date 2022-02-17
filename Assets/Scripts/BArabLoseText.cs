@@ -34,7 +34,7 @@ public class BArabLoseText : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(ScenesName.RealFriend);
+        SceneManager.LoadScene(ScenesName.Game1);
     }
 
     public void MainMenu()

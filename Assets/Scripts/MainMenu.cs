@@ -61,4 +61,16 @@ public class MainMenu : MonoBehaviour
     {
         PlayerData.ResetData();
     }
+
+    public void GotSkates()
+    {
+        PlayerData.Skate1 = true;
+        PlayerData.Skate2 = true;
+        PlayerData.Skate3 = true;
+    }
+
+    public void Allah()
+    {
+        SceneManager.LoadScene(ScenesName.Allah);
+    }
 }
